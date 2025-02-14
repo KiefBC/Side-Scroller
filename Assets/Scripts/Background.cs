@@ -3,9 +3,7 @@ using UnityEngine;
 public class Background : MonoBehaviour
 {
     private float speed = 25.0f;
-
     private Vector3 startPos;
-
     private float halfWidth = 112.8f / 2f;
 
     void Start()

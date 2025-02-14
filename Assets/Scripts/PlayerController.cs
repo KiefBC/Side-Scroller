@@ -40,6 +40,7 @@ public class Playercontroller : MonoBehaviour
             anim.SetBool("Death_b", true);
             anim.SetInteger("DeathType_int", 1);
             dead = true;
+            audioSource.enabled = false;
         }
     }
 
@@ -71,6 +72,9 @@ public class Playercontroller : MonoBehaviour
         anim.Update(0f);
         grounded = true;
         dirtParticle.Play();
+
+        // turn on the audio source
+        audioSource.enabled = true;
     }
 
 
