@@ -11,8 +11,7 @@ public class SpawnManager : MonoBehaviour
 
     List<Obstacles> obstacles;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         obstacles = new List<Obstacles> ();
     }
@@ -34,16 +33,24 @@ public class SpawnManager : MonoBehaviour
             }
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     void SpawnObstacle()
     {
         GameObject obj = Instantiate(obstaclePrefab, spawnPoint.position, obstaclePrefab.transform.rotation);
         Obstacles obs = obj.GetComponent<Obstacles>();
         obstacles.Add(obs);
+    }
+
+    public void DestroyObstacles()
+    {
+        for (int i = 0; i < obstacles.Count; i++)
+        {
+            if (obstacles[i] != null)
+            {
+                Destroy(obstacles[i].gameObject);
+            }
+        }
+
+        obstacles.Clear();
     }
 }

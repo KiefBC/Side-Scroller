@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,16 +11,23 @@ public class GameManager : MonoBehaviour
     {
         bg.enabled = false;
         sm.enabled = false;
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+        Debug.Log("Game Over");
+        StartCoroutine(ResetGameAfterDelay());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator ResetGameAfterDelay()
     {
-        
+        Debug.Log("Waiting for 3 seconds");
+        yield return new WaitForSeconds(3f);
+        Debug.Log("Resetting the game");
+        Reset();
+    }
+
+    public void Reset()
+    {
+        sm.DestroyObstacles();
+        sm.enabled = true;
+        bg.enabled = true;
+        pc.Reset();
     }
 }
